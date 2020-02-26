@@ -1,0 +1,21 @@
+server:
+  port: 8080 #服务端口号
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #pgsql驱动
+    password: 123456 #密码
+    url: jdbc:mysql://localhost:3306/test #url地址
+    username: root #账号
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml #mapper的映射文件
+  type-aliases-package: cn.job.entity #映射文件中别名设置
+  configuration:
+    map-underscore-to-camel-case: 'true' #实体类属性映射（开启驼峰命名规则）
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

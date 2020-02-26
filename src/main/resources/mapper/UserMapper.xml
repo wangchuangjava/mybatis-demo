@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.job.mapper.UserMapper">
+    <resultMap type="user" id="resltmap">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="groupId" column="group_id" />
+        <result property="address" column="address" />
+        <collection property="group" ofType="Group">
+            <result property="groupName" column="group_name" />
+        </collection>
+    </resultMap>
+
+    <select id="queryDoubleXml" resultMap="resltmap">
+       SELECT c_user.*,c_user_group.group_name  from c_user LEFT join c_user_group on c_user.group_id=c_user_group.id
+        <where>
+            <if test="name!='' and name!=null">
+                and name =#{name}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
